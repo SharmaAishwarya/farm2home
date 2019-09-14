@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~angular-notifier/styles/core.css";
+@import "~angular-notifier/styles/types/type-default.css";
+@import "~angular-notifier/styles/types/type-error.css";
+@import "~angular-notifier/styles/types/type-info.css";
+@import "~angular-notifier/styles/types/type-success.css";
+@import "~angular-notifier/styles/types/type-warning.css";
+@import "~angular-notifier/styles/themes/theme-material.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+/* 
+.medium-list {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+ 
+  .list-viewer-wrapper {
+    border: 1px solid rgba(0, 0, 0, .03);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
+    margin: 15%;
+  }
+ 
+  .list-header-title {
+    color: rgba(0, 0, 0, .54);
+    background: rgba(0, 0, 0, .03);
+    padding: 8px 20px;
+    font-weight: bold;
+  }
+ 
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  } */

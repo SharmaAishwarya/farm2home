@@ -1,0 +1,41 @@
+<div class="container">
+	<br>
+	<section>
+		<div id="container_demo">
+			<a class="hiddenanchor" id="toregister"></a>
+			<a class="hiddenanchor" id="tologin"></a>
+			<div id="wrapper">
+				<div id="login" class="animate form">
+					<form autocomplete="on">
+						<h1>Log in</h1>
+						<p>
+							<label for="userid" class="userid"> Your Email id</label>
+							<br>
+							<input id="userid" name="userid" required="required" [(ngModel)]="user.id" type="text" placeholder="mymail@mail.com or 9999999999"
+							/>
+						</p>
+
+						<label for="pwd" class="youpasswd"> Your password </label>
+						<div *ngIf="showPassword==false">
+							<input id="passworduser" name="pwd" required="required" [(ngModel)]="user.password" type="password" placeholder="eg. X8df!90EO"
+							/>
+						</div>
+						<div *ngIf="showPassword==true">
+							<input id="passworduser" name="pwd" required="required" [(ngModel)]="user.password" type="text" placeholder="eg. X8df!90EO"
+							/>
+						</div>
+						<input type="checkbox" (click)="showhidePassword()">Show Password
+
+						<p class="login button">
+							<input type="submit" (click)="login(user)" value="Login" />
+						</p>
+						<p class="change_link">
+							Not a member yet ?
+							<a routerLink="/register" class="to_register">Join us</a>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

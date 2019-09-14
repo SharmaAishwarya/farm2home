@@ -1,0 +1,65 @@
+.catgoryGroup
+{
+    padding : 30px;
+}
+
+.input_fields
+{
+    margin: auto; 
+    width: 50%;
+}
+
+.card 
+{
+    margin-left : auto;
+    margin-right : auto;
+    max-width: 700px;
+    padding : 6px;
+}
+table {
+    width: 100%;
+  }
+
+.delete
+{
+    margin-left : auto;
+    margin-right : auto;
+    max-width: 700px;
+}
+
+  .sub_input_fields
+{
+    margin: auto; 
+    width: 50%;
+}
+  .sub_input_fields mat-form-field
+{
+      width: 200px ;
+}
+  .sub_update_fields
+{
+    margin: auto; 
+    width: 300px;
+}
+  .sub_update_fields mat-form-field
+  {
+    margin: auto; 
+    width: 50%;
+  }
+.deleteCard{
+    margin-left : auto;
+    margin-right : auto;
+    max-width: 700px;
+    padding : 6px;
+}
+.container{
+   
+ 
+  min-width: 100%;
+  min-height: 100%;
+  background-image: url('../../assets/product-images/background.jpg')
+}
+.form{
+    margin-top : 40px;
+    padding : 10px;
+}

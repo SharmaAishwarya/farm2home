@@ -1,0 +1,337 @@
+<div class='container'>
+<mat-tab-group class="tabs" color="accent" backgroundColor="primary">
+    <mat-tab label="List Of Your Products">
+        <table mat-table [dataSource]="productList" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+
+
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+            </ng-container>
+
+            <!-- Description Column -->
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let product"> {{product.description}} </td>
+            </ng-container>
+
+            <!-- Price Column -->
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Price </th>
+                <td mat-cell *matCellDef="let product"> {{product.price}}<span *ngIf="product.type=='K' || product.type=='k'" >
+                        /kg
+                      </span>
+                      <span *ngIf="product.type=='p' || product.type=='P'">
+                          /piece
+                        </span> </td>
+            </ng-container>
+
+            <!-- Type Column
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let product"> {{product.type}} </td>
+            </ng-container> -->
+
+            <!-- Category Column -->
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef> Category </th>
+                <td mat-cell *matCellDef="let product"> {{product.category}} </td>
+            </ng-container>
+
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <td mat-cell *matCellDef="let product"> {{product.quantity}} </td>
+            </ng-container>
+
+            <!-- Quality Column -->
+            <ng-container matColumnDef="quality">
+                <th mat-header-cell *matHeaderCellDef> Quality </th>
+                <td mat-cell *matCellDef="let product"> {{product.quality}} </td>
+            </ng-container>
+
+            <!-- Update Column -->
+            <ng-container matColumnDef="Update Link">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let product">
+                    <a (click)='displayProduct(product.id)'>
+                        <button mat-raised-button color="primary"  type="submit" data-toggle="modal" data-target="#myModal">
+                            update
+                        </button>
+                    </a>
+
+                </td>
+            </ng-container>
+
+            <!-- Delete Column -->
+            <ng-container matColumnDef="Delete">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let product">
+                    <a (click)='displayProduct(product.id)'>
+                        <button mat-raised-button color="warn"  type="submit" data-toggle="modal" data-target="#deleteModal">
+                            delete
+                        </button>
+                    </a>
+
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+
+
+
+    </mat-tab>
+    <mat-tab label="Add a New Product">
+
+        <mat-card class="card">
+            <mat-card-content>
+
+<!--add a new product-->
+                <form class='form' (ngSubmit)="createProduct(product)" #myForm="ngForm" ngNativeValidate>
+                    <div class="input_fields">
+                        <div class="sub_input_fields">
+
+
+                           
+
+                        </div>
+                        <div class="sub_input_fields">
+                            <mat-radio-group class="catgoryGroup" required>
+                                Choose a category
+                                <br>
+                                <br>
+                                <div class="sub_input_fields">
+                                    <mat-radio-button class="categoryRadio" name="Vegetables" value="vegetable" (click)='onSelectRadio("vegetables")'>
+                                        Vegetables
+                                    </mat-radio-button>
+                                    <mat-radio-button class="categoryRadio" name="Fruits" value="fruit" (click)='onSelectRadio("fruits")'>
+                                        Fruits
+                                    </mat-radio-button>
+                                </div>
+
+                            </mat-radio-group>
+
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <div class="sub_input_fields" *ngIf='product.category'>
+                            <mat-form-field>
+                                <mat-select placeholder="Choose product" [formControl]="productControl" required matTooltip="choose a product">
+                                    <mat-option *ngFor="let product of products" name="option" [value]="product" (click)='onSelectDropDown(product)'>
+                                        {{product}}
+                                    </mat-option>
+                                  
+                                </mat-select>
+                                <mat-error *ngIf="productControl.hasError('required')">Please choose a product</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <br>
+                        <br>
+                        <!-- <div class="sub_input_fields">
+                                <form-upload></form-upload>
+                                <br/>
+                                <br/>
+                              
+                        </div>
+                        <br>
+                        <br> -->
+                        <div class="sub_input_fields" >
+                            <mat-form-field>
+                                <input matInput id='description' class='form-control' type="text" matTooltip="enter description" name="description" placeholder="Product Description" [(ngModel)]="product.description" required>
+                            </mat-form-field>
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <div class="sub_input_fields">
+                            <mat-form-field>
+                                
+                                <mat-select placeholder="Type"  [formControl]="typeControl" matTooltip="select a type" required>
+                                        <mat-option *ngFor="let t of type"  name="option" [value]="t" (click)='onSelectType(t)'>
+                                          {{t}}
+                                        </mat-option>
+                                        
+                                    </mat-select>
+                                    <mat-error *ngIf="typeControl.hasError('required')">Please choose a type</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="sub_input_fields">
+                            <mat-form-field>
+                                <input matInput id='price' class='form-control' class='form-control' matTooltip="enter price" type="number" min='0' name="price" placeholder="Price" [(ngModel)]="product.price" required>
+                            </mat-form-field>
+                        </div>
+                        <!-- <br>
+                        <br>
+                        <div class="sub_input_fields">
+
+                            <mat-form-field>
+                                <input matInput type="text" name="farmer_id" placeholder="Your Id" [(ngModel)]="product.farmer_id">
+                            </mat-form-field>
+
+
+                        </div> -->
+                        <br>
+                        <br>
+                        <div class="sub_input_fields">
+
+                            <mat-form-field>
+                                <input matInput id='quantity' class='form-control' type="number" min='0' matTooltip="enter quantity" name="quantity" placeholder="Quantity Of Product" [(ngModel)]="product.quantity" required>
+                            </mat-form-field>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="sub_input_fields">
+
+                            <mat-form-field>
+                                <input matInput type="text" id='quality' class='form-control' matTooltip="enter quality" name="quality" placeholder="Quality Of Product" [(ngModel)]="product.quality" required>
+                            </mat-form-field>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="sub_input_fields">
+                            <button mat-button color="primary" type='submit' [disabled]="!myForm.form">CREATE PRODUCT</button>
+                        </div>
+
+
+                    </div>
+                </form>
+            </mat-card-content>
+
+            <br>
+            <br>
+
+
+
+        </mat-card>
+
+    </mat-tab>
+    <!-- <mat-tab label="Delete Image">
+            
+<ng-container *ngFor='let product of products'>
+            <img mat-card-image src="https://material.angular.io/assets/product-images/F001/{{products.name}}.jpg" >
+                    
+                 <ng-container>                               
+                    {{product.name}}
+               </ng-container>
+                  
+                    <!-- Button Column -->
+                    <!-- <ng-container matColumnDef="button">
+                     
+                            <a (click)='deleteImage(product.farmer_id , product.name)'>
+                                    <button mat-raised-button color="warn" type="submit" data-toggle="modal" data-target="#deleteModal">
+                                        delete
+                                    </button>
+                                </a>
+                      
+                    </ng-container>
+                </ng-container>
+    </mat-tab> -->
+</mat-tab-group>
+</div>
+
+
+
+
+
+
+<!-- Update Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                Edit Product
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+               
+                <div class="update_fields" *ngIf='productUpdate'>
+                    <div class="sub_update_fields">
+                        <mat-form-field>
+                            <input matInput [(ngModel)]='productUpdate.name' aria-disabled="true" disabled>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="sub_update_fields">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Product Description" [(ngModel)]='productUpdate.description'>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="sub_update_fields">
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="Kilo or Piece" [(ngModel)]="productUpdate.type">
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="sub_update_fields">
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="Price" [(ngModel)]="productUpdate.price">
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="sub_update_fields">
+                        <mat-form-field>
+                            <input matInput type="number" placeholder="Quantity Of Product" [(ngModel)]="productUpdate.quantity">
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="sub_update_fields">
+                        <mat-form-field>
+                            <input matInput type="text" aria-disabled="true" disabled placeholder="Quality Of Product" [(ngModel)]="productUpdate.quality">
+                        </mat-form-field>
+                    </div>
+                </div>
+            
+            </div>
+            <div class="modal-footer sub_update_fields">
+                <a *ngIf='productUpdate' (click)='updateProduct(productUpdate)'>
+                    <button mat-button data-dismiss="modal">Update</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--Delete Modal -->
+<div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                Are you sure ?
+            </div>
+            <div class="modal-footer">
+                <a *ngIf='productUpdate' (click)='deleteProduct(productUpdate.id)'>
+                    <button mat-button color="warn" class="relative waves-light " data-dismiss="modal" mdbWavesEffect>Yes</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

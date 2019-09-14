@@ -1,0 +1,79 @@
+<div class="container">
+  <br>
+  <div class="col-md-12">
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <td>
+            <h5 style="margin-bottom: 0px; margin-top: 0px"> YOUR ORDERS</h5>
+          </td>
+
+          <td>
+            <h5 style="margin-bottom: 0px; margin-top: 0px">NAME</h5>
+          </td>
+          <td>
+            <h5 style="margin-bottom: 0px; margin-top: 0px">PRICE</h5>
+          </td>
+          <td>
+            <h5 style="margin-bottom: 0px; margin-top: 0px">QUANTITY</h5>
+          </td>
+          <td>
+            <h5 style="margin-bottom: 0px; margin-top: 0px"> </h5>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let prod of cartProducts; index as i' [class.active]="i===0">
+          <!-- <div class="col-lg-4 col-md-4">
+                <a href="#"><img src="{{myCart.src}}" class="img-responsive img-thumbnail" alt="Product 2" /></a>
+           </div> -->
+          <th style="vertical-align: middle;">
+            <div >
+                <img style="height: 100px; width: 100px; float:right" class="_1mkrTD" src="../../assets/product-images/{{prod.name}}.jpg" >
+            </div>
+          <th style="vertical-align: middle;">{{prod.name}}</th>
+          <th style="vertical-align: middle;">{{getPrice(prod.id)}}</th>
+          <th style="vertical-align: middle;"> {{getQuantity(prod.id)}}
+            
+              <div class="sub_input_fields">
+                  <mat-form-field>
+                    <input matInput type="number" name="quantity" placeholder="ChangeQuantity" [(ngModel)]="productQuantity">
+                  </mat-form-field>
+                  <button  (click)="changeQuantity(prod.id,productQuantity)">
+
+                     ok
+                    </button>
+                </div>
+
+          </th>
+          <th style="vertical-align: middle;">
+            <button class="btn btn-danger" (click)="deleteProduct(prod.id)">
+
+              REMOVE
+            </button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container">
+    <div class="row">
+      <h3 style="margin-bottom: 0px; margin-top: 0px" class="col-lg-4 col-md-4">
+        <i class="fa fa-inr"> Your {{totalPrice}} </i>
+      </h3>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="pull-right">
+      <a href="#" class="btn">Back to Shopping </a>
+      <a href="#" class="btn btn-success" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Chekout
+        <div id="id01" class="modal">
+          <form class="modal-content animate" action="/action_page.php">
+            <i class="material-icons">FARMER2HOME</i>
+          <h2 style="margin-left: 30px; margin-top: 80px">Thank you for Shopping with us  {{cartId}}</h2>
+
+          </form>
+        </div>
+      </a>
+    </div>
+  </div>

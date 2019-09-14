@@ -1,0 +1,63 @@
+.feed {
+    margin: auto;
+    margin-top: 50px;
+    width: 60%;
+    border: 2px solid grey ;
+    box-shadow: 10px 10px 18px #888888;
+    padding: 10px;
+    
+}
+.farmer_name {
+    margin :auto;
+    padding-left: 0px;
+  }
+  textarea{
+      width: -webkit-fill-available;
+  }
+.field{
+    font-family: 'Roboto', sans-serif;
+   font-weight: 500  ;
+    color:black;
+}
+.button {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  
+    padding: 12px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #008CBA;
+    color: white;
+}
+.button1 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  
+    padding: 6px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button1:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+table {
+    width: 100%;
+  }

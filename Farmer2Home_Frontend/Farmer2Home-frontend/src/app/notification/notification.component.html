@@ -1,0 +1,46 @@
+
+
+        <div class="imgbox" *ngIf="!hasMessage"><img class="center-fit"  src="../../assets/nomessage.png"></div>
+         <div class="container" *ngIf="hasMessage">
+            <div class="row">
+         <div class="col-md-12 col-md-offset-2">
+               <div class="panel panel-default">
+                   <div class="panel-body">
+                       <div class="table-container">
+                           <table class="table table-filter">
+                               <tbody>
+                                   <tr  *ngFor="let notification of array;let i = index">
+                                       <td>
+                                           <div>
+                                                   <i class="fa fa-envelope-o"></i>
+                                           </div>
+                                       </td>
+                                       <td>
+                                           <div class="media" >
+                                               <a href="#" class="pull-left">
+                                                   <img src="../../assets/product-images/{{getName(notification.productId)}}.jpg" class="media-photo">
+                                               </a>
+                                               <div class="media-body">
+                                                   
+                                                   <h4 class="title">
+                                                      <a  routerLink="/productDetail/{{notification.productId}}">{{getName(notification.productId)}}</a>
+                                                       <span class="pull-right pagado">
+                                                            <button mat-raised-button color="warn" (click)="removeNotification(userId,notification.id,i)">
+                                                               delete
+                                                           </button></span>
+                                                   </h4>
+                                                   <p class="summary">{{notification.message}}</p>
+                                                   
+                                               </div>
+                                           </div>
+                                       </td>
+                
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       </div>

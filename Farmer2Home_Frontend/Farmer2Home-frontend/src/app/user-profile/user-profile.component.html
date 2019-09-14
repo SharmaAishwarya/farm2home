@@ -1,0 +1,104 @@
+<div class="container">
+  <br>
+  <section>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div id="container_demo">
+      <div id="wrapper">
+        <div id="update" class="animate form">
+          <form autocomplete="on">
+            <h1>Your profile</h1>
+            <br>
+            <div class="card" style="width: 23.6rem;" *ngIf="user">
+              <div class="card-header">
+                Hello, {{user.name | uppercase}}
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Email-Id: {{user.id}}</li>
+                <li class="list-group-item">Phone Number: {{user.mobile}}</li>
+                <li class="list-group-item">Address: {{user.address}}</li>
+              </ul>
+            </div>
+            <br>
+            <span class="delete">
+              <input type="submit" data-toggle="modal" data-target="#deleteModal" value="Delete" />
+            </span>
+            <span class="update">
+              <input type="submit" value="Update" (click)="updateUser(user)" data-toggle="modal" data-target="#updateUserModal" />
+            </span>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                Are you sure ?
+            </div>
+            <div class="modal-footer">
+                <a (click)='deleteUser()'>
+                    <button mat-button color="warn" class="relative waves-light " data-dismiss="modal" mdbWavesEffect>Yes</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Update Modal -->
+<div id="updateUserModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        Edit Profile
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="update_fields" *ngIf='user'>
+          <div class="sub_update_fields">
+            <mat-form-field>
+              <input matInput [(ngModel)]='user.name' aria-disabled="true" disabled>
+            </mat-form-field>
+          </div>
+          <br>
+          <br>
+          <div class="sub_update_fields">
+            <mat-form-field>
+              <input matInput type="text" placeholder="password" [(ngModel)]='user.password'>
+            </mat-form-field>
+          </div>
+          <br>
+          <br>
+          <div class="sub_update_fields">
+            <mat-form-field>
+              <input type="text" matInput placeholder="phone number" [(ngModel)]="user.mobile">
+            </mat-form-field>
+          </div>
+          <br>
+          <br>
+          <div class="sub_update_fields">
+            <mat-form-field>
+              <input matInput type="text" placeholder="address" [(ngModel)]="user.address">
+            </mat-form-field>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer sub_update_fields">
+        <a *ngIf='user' (click)="updateUser(user)">
+          <button mat-button data-dismiss="modal">Update</button>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

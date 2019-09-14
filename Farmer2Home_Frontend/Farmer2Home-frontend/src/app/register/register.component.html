@@ -1,0 +1,67 @@
+<form autocomplete="on" (submit)="register(user)" ngNativeValidate>
+  <div  class="container">
+    <label> Register as<font color="red"> *</font></label>
+    <br>
+    
+    <input type="radio" checked="checked" name="role" value="f" [(ngModel)]="user.role" required> Farmer
+    <input type="radio" name="role" value="c" [(ngModel)]="user.role" required>Customer
+
+  </div>
+  <div class="container">
+    <br>
+    <section>
+      <div id="container_demo">
+        <a class="hiddenanchor" id="toregister"></a>
+        <a class="hiddenanchor" id="tologin"></a>
+        <div id="wrapper">
+          <div id="register">
+            <h1> Sign up </h1>
+            <p class="form-group" *ngIf='user'>
+              <label for="userid" class="userid"> Your Email id<font color="red"> *</font></label>
+              <br>
+              <input id="userid" name="userid" [(ngModel)]="user.id" type="text" placeholder="Eg : mymail@mail.com or 9999999999" required
+                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" />
+            </p>
+            <p class="form-group">
+              <label for="username" class="uname"> Your name<font color="red"> *</font></label>
+              <br>
+              <input id="username" name="username" [(ngModel)]="user.name" type="text" placeholder="Eg : Shrikant Talokar" required />
+            </p>
+            <p class="form-group">
+              <label for="passwordsignup" class="youpasswd">Your password<font color="red"> *</font></label>
+              <br>
+              <input id="passwordsignup" name="passwordsignup" [(ngModel)]="user.password" type="password" placeholder="Eg. X8df!90EO"
+                required  pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$" />
+            </p>
+            <p class="form-group">
+              <label for="passwordresignup" class="repasswd">Re-enter your password<font color="red"> *</font></label>
+              <br>
+              <input id="passwordresignup" name="passwordresignup" [(ngModel)]="repassword" type="password" placeholder="Re-enter the password you set"
+                required />
+            </p>
+            <p class="form-group">
+              <label for="phoneNumbersignup" class="uname">Your phone number<font color="red"> *</font></label>
+              <br>
+              <input id="phoneNumbersignup" name="phoneNumbersignup" [(ngModel)]="user.mobile" type="text" placeholder="Please enter without country code, Eg : 9999999999"
+                required pattern="[789][0-9]{9}" />
+            </p>
+            <p class="form-group">
+              <label for="useraddress" class="useraddress"> Your address<font color="red"> *</font></label>
+              <br>
+              <input id="useraddress" name="useraddress" [(ngModel)]="user.address" type="text" placeholder="Eg : Flat no, 251/B, Greenpark Housing Society, Andheri - 421511"
+                required />
+            </p>
+
+            <p class="signin button">
+              <input type="submit" value="Sign up" />
+            </p>
+            <p class="change_link">
+              Already a member ?
+              <a routerLink="/login" class="to_register"> Go and log in </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</form>

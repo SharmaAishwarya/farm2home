@@ -1,0 +1,24 @@
+.product_image{
+    align-items: center;
+   
+}
+.imgContainer{
+    display: block; 
+    margin-left: auto;
+    margin-right: auto; 
+    width: 70%;
+    max-height: 100%;
+    
+}
+ table {
+    width: 100%;
+  }
+  .product_image{
+      margin-top:50px;
+      margin-left :auto;
+      margin-right:auto;
+      display: block;
+  }
+  .filter{
+      float:right;
+  }
